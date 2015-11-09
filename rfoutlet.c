@@ -17,7 +17,7 @@ static void transmit(int high_pulses, int low_pulses);
 int main(int argc, char *argv[])
 {
 	if (argc < 3) {
-		fprintf(stderr, "not enough arguments: etekcity <switch_num> <on/off>\n");
+		fprintf(stderr, "missing required arguments: %s <switch_num> <on/off>\n", argv[0]);
 		return 1;
 	}
 

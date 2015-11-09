@@ -1,4 +1,4 @@
-# About etekcity-pi
+# About rfoutlet-pi
 
 This is a super-simple standalone program for controlling the Etekcity Wireless
 Remote Control Electrical Outlet Switches,
@@ -23,4 +23,9 @@ rather than C++.
 1. Install wiringpi if you don't have it already; this should be available on your Pi distro of choice
 1. Clone this repository
 1. Run `make`
-1. Run a command like `./etekcity 1 on` to turn switch 1 on
+1. Run a command like `./rfoutlet 1 on` to turn switch 1 on
+
+# Inspiration and related projects
+
+* [433Utils](https://github.com/ninjablocks/433Utils)
+* [rfoutlet](https://github.com/timleland/rfoutlet)
