@@ -51,6 +51,8 @@ int main(int argc, char *argv[])
 
 static void send(int code, int bits, int send_count)
 {
+	// send a sync bit
+	transmit(1, 31);
 	for (int repeat = 0; repeat < send_count; repeat++) {
 		for (int i = bits - 1; i >= 0; i--) {
 			int bit = (code >> i) & 1;
