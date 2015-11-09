@@ -10,6 +10,7 @@ static const int pin = 2;
 
 static void handle_interrupt();
 static int switch_number(int code);
+static int group_number(int code);
 
 int main(int argc, char *argv[])
 {
@@ -33,10 +34,10 @@ static void handle_interrupt()
 
 	if (duration > 30 * pulse_length) {
 		if (code != 0) {
-			printf("raw code: %d, 0x%x\n", code, code);
-			printf("group 0x%x\n", code >> 16);
-			printf("switch: %d\n", switch_number(code));
-			printf("on/off: %s\n", (code & 0xf) == 0x3 ? "on" : "off");
+			printf("code: %d (raw: 0x%06x)\n", code, code);
+			printf("  group: %04d (raw: 0x%x)\n", group_number(code), code >> 16);
+			printf("  switch: %d\n", switch_number(code));
+			printf("  on/off: %s\n", (code & 0xf) == 0x3 ? "on" : "off");
 		}
 		code = 0;
 		processing = 1;
@@ -72,5 +73,13 @@ static int switch_number(int code)
 	if ((tranform & 0x30) == 0x30) return 3;
 	if ((tranform & 0xc0) == 0xc0) return 4;
 	if ((tranform & 0x300) == 0x300) return 5;
+	return -1;
+}
+
+static int group_number(int code)
+{
+	int transform = code >> 16;
+	// obviously this is not the algorithm, but we need more codes
+	if (transform == 0x14) return 349;
 	return -1;
 }
